@@ -2,9 +2,9 @@
 import { decodeCredential } from "vue3-google-login";
 import { ref } from "vue";
 
-const user = ref(null);
+const user = ref<any>(null);
 
-const callback = (response) => {
+const callback = (response: any) => {
   console.log("Handle the response", response);
   const userData = decodeCredential(response.credential);
   console.log("Handle the userData", userData);
