@@ -11,4 +11,4 @@ https://qiita.com/cokemaniaIIDX/items/bdb9a00bef3c6c2365f5
 
 ソースコードのポイントは [main.ts で初期化](https://github.com/coji/google-auth-test-vue3/blob/main/src/main.ts#L6) した上で、[App.vue でコンポーネントを使いつつ、callback でログイン処理として state にユーザ情報を入れる形です](https://github.com/coji/google-auth-test-vue3/blob/main/src/App.vue#L35)
 
-callback の credential を state にいれて API サーバにアクセスするときにそれを使って、サーバ側で検証したり、その検証結果自体を使ってセッション情報をローカルストレージに入れるのが基本になるかな〜とおもいます。
+[ここでやっているように、callback の credential を API サーバに投げて](https://github.com/coji/google-auth-test-vue3/blob/main/src/App.vue#L7)、[サーバ側で検証](https://github.com/coji/google-auth-test-vue3/blob/main/src/api/auth.rb)し、その検証結果自体を使ってセッション情報をローカルストレージに入れるのが基本になるかな〜とおもいます。

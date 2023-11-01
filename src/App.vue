@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { decodeCredential } from "vue3-google-login";
 import { ref } from "vue";
 
 const user = ref<any>(null);
 
-const callback = (response: any) => {
-  console.log("Handle the response", response);
-  const userData = decodeCredential(response.credential);
-  console.log("Handle the userData", userData);
+const callback = async (response: any) => {
+  const credential = response.credential;
 
-  // ログイン
-  user.value = userData;
+  // 検証
+  const ret: any = await fetch(`/api/auth?id_token=${credential}`);
+  if (ret.ok) {
+    // ユーザ情報を取得
+    user.value = await ret.json();
+  } else {
+    // エラー処理
+    console.log(ret.error);
+    user.value = null;
+  }
   console.log({ user: user.value });
 };
 
